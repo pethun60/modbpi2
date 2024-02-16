@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import json
 
 # Define callback functions for the first MQTT server
 def on_connect_1(client, userdata, flags, rc):
@@ -12,9 +13,23 @@ def on_message_1(client, userdata, msg):
     message = msg.topic+" value="+msg.payload.decode("utf-8")
     topic_1 = msg.topic
     print("Received message from Server 1:", message)
+    topic2 = "/testtopic"
+    message2 ="PrincessCruises,Shipname=Diamond_Princess,Chiller=1,Sensor=InletCWtemp value=12.0"
+    message3 = {
+                "Owner" : "PrincessCruises",
+                "Shipname":"Diamond_Princess",
+                "Chiller":1 ,
+                "Sensor": "InletCWtemp",
+                "value":12.0
+                }
     
-    # Publish the received message to Server 2
-    client_2.publish(topic_1, message)  # Publish the message to Server 2
+    payload = json.dumps(message3, indent=4)
+
+    print("message3 is of type ", type(message3))
+    print("payload is of type ", type(payload))
+    client_2.publish(topic2, payload)  # Publish the message to Server 2
+    
+
 
 # Define callback functions for the second MQTT server
 def on_connect_2(client, userdata, flags, rc, properties=None):
@@ -22,13 +37,15 @@ def on_connect_2(client, userdata, flags, rc, properties=None):
 
 def on_publish_2(client, userdata, mid):
     print("Message published to Server 2")
+        # Publish the received message to Server 2
+
 
 # Create MQTT client instances for both servers
 #client_1 = mqtt.Client()
-client_1 = mqtt.Client()
+client_1 = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
 client_1.username_pw_set(username="peter", password="Peter_Th")
 # client_2 = mqtt.Client()
-client_2 = mqtt.Client(client_id="", userdata=None, protocol=mqtt.MQTTv5)
+client_2 = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, client_id="", userdata=None, protocol=mqtt.MQTTv5)
 #client_2.on_connect = on_connect
 
 # enable TLS for secure connection
