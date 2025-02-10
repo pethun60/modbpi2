@@ -1,0 +1,72 @@
+
+services:
+  modbus_tcp_server_ac1_1sec:
+    image: pethun60/modbus_server_ip51_ac1_1sec:v1.0
+    container_name: modbus_tcp_server_ac1_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.51
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ac2_1sec:
+    image: pethun60/modbus_server_ip52_ac2_1sec:v1.0
+    container_name: modbus_tcp_server_ac2_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.52
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ac3_1sec:
+    image: pethun60/modbus_server_ip53_ac3_1sec:v1.0
+    container_name: modbus_tcp_server_ac3_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.53
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ac4_1sec:
+    image: pethun60/modbus_server_ip54_ac4_1sec:v1.0
+    container_name: modbus_tcp_server_ac4_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.54
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ac5_1sec:
+    image: pethun60/modbus_server_ip55_ac5_1sec:v1.0
+    container_name: modbus_tcp_server_ac5_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.55
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+  modbus_tcp_server_seq_1sec:
+    image: pethun60/modbus_server_ip71_seq_1sec:v1.0
+    container_name: modbus_tcp_server_seq_1sec
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.71
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+
+
+networks:
+  ac_network:
+    driver: ipvlan
+    driver_opts:
+      parent: enp2s0
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1

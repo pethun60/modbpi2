@@ -1,0 +1,13 @@
+FROM python:alpine3.19
+
+LABEL Maintainer="peterT"
+COPY requirements.txt /app/src/app/requirements.txt
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY new_modbus_server_1sec.py .
+
+CMD [ "python", "./new_modbus_server_1sec.py" ]
+

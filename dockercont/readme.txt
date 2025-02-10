@@ -1,0 +1,1 @@
+docker run --name hanport_container --device=/dev/ttyUSB0 -itd -v /home/peter/elec:/app/src --rm pethun60/hanport_container:v2.0
