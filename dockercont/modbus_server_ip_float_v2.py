@@ -64,12 +64,12 @@ async def update_holding_registers():
 # Start TCP Server asynchronously
 async def run_server():
     log.info(f"Starting Modbus TCP server on {args.ip}:{args.p} update every {args.t} sec")
-    
-    # Start the server
-    server = ModbusTcpServer(context=context, identity=identity, address=(args.ip, int(args.p)))
 
-    # Start updating holding registers concurrently
-    await asyncio.gather(server.serve_forever(), update_holding_registers())
+    # Start the Modbus server and update registers concurrently
+    await asyncio.gather(
+        StartAsyncTcpServer(context, identity=identity, address=(args.ip, int(args.p))),
+        update_holding_registers()
+    )
 
 if __name__ == "__main__":
     asyncio.run(run_server())
