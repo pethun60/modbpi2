@@ -1,0 +1,133 @@
+
+services:
+  modbus_tcp_server_ch2_1sec:
+    image: pethun60/modbus_server_ip_11_ch2_1sec:v4.0
+    container_name: modbus_tcp_server_ch2_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.11
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch1_1sec:
+    image: pethun60/modbus_server_ip_10_ch1_1sec:v4.0
+    container_name: modbus_tcp_server_ch1_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.10
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch3_1sec:
+    image: pethun60/modbus_server_ip_20_ch3_1sec:v4.0
+    container_name: modbus_tcp_server_ch3_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.20
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch4_1sec:
+    image: pethun60/modbus_server_ip_21_ch4_1sec:v4.0
+    container_name: modbus_tcp_server_ch4_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.21
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch5_1sec:
+    image: pethun60/modbus_server_ip_30_ch5_1sec:v4.0
+    container_name: modbus_tcp_server_ch5_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.30
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch6_1sec:
+    image: pethun60/modbus_server_ip_31_ch6_1sec:v4.0
+    container_name: modbus_tcp_server_ch6_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.31
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch7_1sec:
+    image: pethun60/modbus_server_ip_40_ch7_1sec:v4.0
+    container_name: modbus_tcp_server_ch7_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.40
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch8_1sec:
+    image: pethun60/modbus_server_ip_41_ch8_1sec:v4.0
+    container_name: modbus_tcp_server_ch8_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.41
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch9_1sec:
+    image: pethun60/modbus_server_ip_50_ch9_1sec:v4.0
+    container_name: modbus_tcp_server_ch9_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.50
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+  modbus_tcp_server_ch10_1sec:
+    image: pethun60/modbus_server_ip_51_ch10_1sec:v4.0
+    container_name: modbus_tcp_server_ch10_1sec_cont
+    networks:
+      ac_network:
+        ipv4_address: 192.168.0.51
+    ports:
+      - "502:502"
+    tty: true           # Enable TTY for interactive support
+    stdin_open: true    # Keep stdin open even if not attached
+    restart: unless-stopped  # Run in detached mode
+
+
+
+networks:
+  ac_network:
+    driver: ipvlan
+    driver_opts:
+      parent: enp1s0
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1

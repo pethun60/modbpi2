@@ -7,7 +7,8 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY modbus_server_ip_float_v2.py .
+COPY modbus_server_ip_float_v3.py .
 
-CMD [ "python", "./modbus_server_ip_float_v2.py","-ip","192.168.0.11 ","-p", "5020", "-t", "1"]
+CMD [ "python", "./modbus_server_ip_float_v3.py","-ip","192.168.0.31","-p", "502", "-t", "1"]
+
 
