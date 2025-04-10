@@ -60,11 +60,11 @@ services:
     restart: unless-stopped  # Run in detached mode
 
   modbus_tcp_server_seq_abs_1sec:
-    image: pethun60/modbus_server_ip71_seq_abs_1_sec:v1.0
+    image: pethun60/modbus_server_ip71_seq_abs_1sec:v2.0
     container_name: modbus_tcp_server_seq_abs_1sec
     networks:
       ac_network:
-        ipv4_address: 192.168.0.71
+        ipv4_address: 192.168.0.72   // only used for testing purpose
     tty: true           # Enable TTY for interactive support
     stdin_open: true    # Keep stdin open even if not attached
     restart: unless-stopped  # Run in detached mode
